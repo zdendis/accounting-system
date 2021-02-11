@@ -20,7 +20,7 @@ data class Invoice (
     private val sellerAddress: String,
 
     @OneToOne(mappedBy = "invoice")
-    private val order: IOrder
+    private val order: InOrder
 
 )
 

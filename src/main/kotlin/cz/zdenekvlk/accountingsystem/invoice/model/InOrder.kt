@@ -5,7 +5,8 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-data class IOrder(
+//@Table(name = "`ORDER`")
+data class InOrder(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private val id: Long,
