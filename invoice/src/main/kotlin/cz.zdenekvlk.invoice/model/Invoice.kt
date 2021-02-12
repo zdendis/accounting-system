@@ -1,4 +1,4 @@
-package cz.zdenekvlk.accountingsystem.invoice.model
+package cz.zdenekvlk.invoice.model
 
 import java.time.LocalDateTime
 import javax.persistence.*
@@ -19,8 +19,10 @@ data class Invoice (
 
     private val sellerAddress: String,
 
+    private val paid: Boolean,
+
     @OneToOne(mappedBy = "invoice")
-    private val order: InOrder
+    private val order: CustomerOrder
 
 )
 

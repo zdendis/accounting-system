@@ -1,12 +1,10 @@
-package cz.zdenekvlk.accountingsystem.invoice.model
+package cz.zdenekvlk.invoice.model
 
-import java.io.Serializable
 import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-//@Table(name = "`ORDER`")
-data class InOrder(
+data class CustomerOrder(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private val id: Long,
@@ -20,10 +18,10 @@ data class InOrder(
     @Embedded
     private val customer: Customer,
 
-    @OneToMany(mappedBy = "orderId")
-    private val products: List<OrderProduct>,
+    @OneToMany(mappedBy = "order", cascade = [CascadeType.ALL])
+    private val orderProducts: Set<OrderProduct> = hashSetOf(),
 
-    @OneToOne
+    @OneToOne(cascade = [CascadeType.ALL])
     private val invoice: Invoice
 )
 
@@ -46,30 +44,3 @@ data class Customer(
 //    private val country: String
 //)
 
-@Entity
-data class OrderProduct(
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private val orderId: Long,
-
-    @Id
-    private val productId: Long,
-
-    private val quantity: Int,
-
-    private val price: Double
-): Serializable
-
-@Entity
-data class Product(
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private val id: Long,
-
-    private val sku: String,
-
-    private val name: String,
-
-    @OneToMany(mappedBy = "productId")
-    private val orders: List<OrderProduct>
-)

@@ -1,11 +1,11 @@
-package cz.zdenekvlk.accountingsystem
+package cz.zdenekvlk.invoice
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class AccountingSystemApplication
+class InvoiceSystemApplication
 
 fun main(args: Array<String>) {
-    runApplication<AccountingSystemApplication>(*args)
+    runApplication<InvoiceSystemApplication>(*args)
 }
