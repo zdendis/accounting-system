@@ -3,6 +3,7 @@ package cz.zdenekvlk.invoice.config
 import org.h2.tools.Server
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.hateoas.config.EnableHypermediaSupport
 import java.sql.SQLException
 
 @Configuration

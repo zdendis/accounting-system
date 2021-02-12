@@ -12,17 +12,17 @@ import javax.persistence.*
 data class OrderProduct(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private val id: Long,
+    val id: Long,
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private val order: CustomerOrder,
+    val order: CustomerOrder,
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private val product: Product,
+    val product: Product,
 
-    private val quantity: Int,
+    val quantity: Int,
 
-    private val price: Double
-): Serializable
+    val price: Double
+) : Serializable

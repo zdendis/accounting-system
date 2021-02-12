@@ -7,16 +7,16 @@ import javax.persistence.*
 data class Product(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private val id: Long,
+    val id: Long,
 
-    private val sku: String,
+    val sku: String,
 
-    private val name: String,
+    val name: String,
 
-    private val validFrom: LocalDate,
+    val validFrom: LocalDate,
 
-    private val validTo: LocalDate,
+    val validTo: LocalDate?,
 
     @OneToMany(mappedBy = "product")
-    private val orderProducts: Set<OrderProduct> = hashSetOf()
+    val orderProducts: Set<OrderProduct> = hashSetOf()
 )
