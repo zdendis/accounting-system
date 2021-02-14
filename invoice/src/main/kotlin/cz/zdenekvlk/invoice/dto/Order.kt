@@ -33,8 +33,8 @@ import java.time.LocalDateTime
 ]
 }*/
 
-data class Order(
-    val referenceNumber: Int,
+open class Order(
+    val referenceNumber: Long,
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @JsonDeserialize(using = LocalDateTimeDeserializer::class)
@@ -47,5 +47,7 @@ data class Order(
 
     val customerName: String,
 
-    val customerAddress: String
+    val customerAddress: String,
+
+    val products: List<Product>
 )

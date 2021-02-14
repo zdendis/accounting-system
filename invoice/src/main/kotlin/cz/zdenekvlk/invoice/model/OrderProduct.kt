@@ -10,19 +10,27 @@ import javax.persistence.*
     ]
 )
 data class OrderProduct(
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    val id: Long,
+    @EmbeddedId
+    val id: OrderProductId,
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    val order: CustomerOrder,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("orderId")
+    var order: CustomerOrder? = null,
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("productId")
     val product: Product,
 
     val quantity: Int,
 
     val price: Double
-) : Serializable
+)
+
+@Embeddable
+data class OrderProductId(
+    @Column(name = "order_id")
+    val orderId: Long,
+
+    @Column(name = "product_id")
+    val productId: Long
+): Serializable

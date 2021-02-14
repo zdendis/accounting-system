@@ -8,6 +8,8 @@ import java.util.*
 interface ProductRepository : PagingAndSortingRepository<Product, Long> {
     fun findBySku(sku: String): Optional<Product>
 
+    fun existsBySku(sku: String): Boolean
+
     @RestResource(exported = false)
     override fun deleteById(id: Long)
 
