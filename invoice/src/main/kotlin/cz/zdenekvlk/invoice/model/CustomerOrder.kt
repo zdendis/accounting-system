@@ -39,6 +39,6 @@ data class CustomerOrder(
     @OneToMany(mappedBy = "order", cascade = [CascadeType.ALL], orphanRemoval = true)
     val orderProducts: MutableList<OrderProduct> = mutableListOf(),
 
-    @OneToOne(cascade = [CascadeType.ALL])
+    @OneToOne(cascade = [CascadeType.ALL], orphanRemoval = true)
     val invoice: Invoice
 )

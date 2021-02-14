@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.test.context.EmbeddedKafka
 import org.springframework.test.annotation.DirtiesContext
+import org.springframework.test.context.TestPropertySource
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
@@ -19,6 +20,7 @@ import java.util.concurrent.TimeUnit
 @SpringBootTest
 @DirtiesContext
 @EmbeddedKafka(partitions = 1, brokerProperties = ["listeners=PLAINTEXT://localhost:9092", "port=9092"])
+@TestPropertySource("classpath:application.properties")
 class CustomerOrderConsumerServiceTest(
     @Autowired
     private val customerOrderRepository: CustomerOrderRepository,

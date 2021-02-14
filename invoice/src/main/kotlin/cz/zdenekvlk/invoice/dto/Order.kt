@@ -34,6 +34,8 @@ import java.time.LocalDateTime
 }*/
 
 open class Order(
+    var id: Long? = null,
+
     val referenceNumber: Long,
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")

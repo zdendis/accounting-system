@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 import javax.transaction.Transactional
-
 @Service
 @Transactional
 class CustomerOrderService(
@@ -71,4 +70,24 @@ class CustomerOrderService(
 
         return createdOrder
     }
+
+    fun getOrders(): Iterable<CustomerOrder> = customerOrderRepository.findAll()
+
+    fun deleteOrder(id: Long) {
+        customerOrderRepository.deleteById(id)
+    }
+
+    fun updateOrder(id: Long, order: Order): CustomerOrder {
+        val dbOrder = customerOrderRepository.findById(id)
+
+        return if(dbOrder.isPresent) {
+            order.id = id
+            saveOrder(order)
+        } else {
+            saveOrder(order)
+        }
+    }
+
+    fun getOrder(id: Long): CustomerOrder = customerOrderRepository.findById(id).orElseThrow()
 }
+
