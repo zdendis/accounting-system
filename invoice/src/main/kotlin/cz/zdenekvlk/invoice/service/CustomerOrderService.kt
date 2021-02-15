@@ -15,26 +15,30 @@ class CustomerOrderService(
     private val customerOrderRepository: CustomerOrderRepository,
     private val orderProductRepository: OrderProductRepository,
     private val productRepository: ProductRepository,
-    @Value("\${seller.account.number}")
-    private val accountNumber: String,
-    @Value("\${seller.address}")
-    private val sellerAddress: String,
-    @Value("\${invoice.duedate.period}")
-    private val dueDatePeriod: Long
+    @Value("\${seller.account.number}") accountNumber: String,
+    @Value("\${seller.address}") sellerAddress: String,
+    @Value("\${invoice.duedate.period}") dueDatePeriod: Long
 ) {
-    fun saveOrder(order: Order): CustomerOrder {
+    private val dueDatePeriod = dueDatePeriod
+    private val sellerAddress = sellerAddress
+    private val accountNumber = accountNumber
+
+    fun createOrUpdateOrder(order: Order, invoiceId: Long? = null): CustomerOrder {
+        val invoice = Invoice(
+            id = invoiceId,
+            accountNumber = accountNumber,
+            sellerAddress = sellerAddress,
+            dueDate = LocalDateTime.now().plusDays(dueDatePeriod)
+        )
         val createdOrder = customerOrderRepository.save(
             CustomerOrder(
+                id = order.id,
                 referenceNumber = order.referenceNumber,
                 currency = order.currency,
                 customerId = order.customerId,
                 customerName = order.customerName,
                 customerAddress = order.customerAddress,
-                invoice = Invoice(
-                    accountNumber = accountNumber,
-                    sellerAddress = sellerAddress,
-                    dueDate = LocalDateTime.now().plusDays(dueDatePeriod)
-                )
+                invoice = invoice
             )
         )
 
@@ -78,13 +82,13 @@ class CustomerOrderService(
     }
 
     fun updateOrder(id: Long, order: Order): CustomerOrder {
-        val dbOrder = customerOrderRepository.findById(id)
+        val orderDb = customerOrderRepository.findById(id)
 
-        return if(dbOrder.isPresent) {
+        return if(orderDb.isPresent) {
             order.id = id
-            saveOrder(order)
+            createOrUpdateOrder(order, orderDb.get().invoice.id)
         } else {
-            saveOrder(order)
+            createOrUpdateOrder(order)
         }
     }
 

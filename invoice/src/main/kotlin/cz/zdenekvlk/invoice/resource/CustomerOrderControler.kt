@@ -25,13 +25,15 @@ class CustomerOrderControler(
 
     @PostMapping(value = ["/customerOrders"])
     fun createOrder(@RequestBody order: Order, persistentEntityResourceAssembler: PersistentEntityResourceAssembler): EntityModel<Any> =
-        persistentEntityResourceAssembler.toFullResource(customerOrderService.saveOrder(order))
+        persistentEntityResourceAssembler.toFullResource(customerOrderService.createOrUpdateOrder(order))
 
     @PutMapping(value = ["/customerOrders/{id}"])
     fun updateOrder(@PathVariable id: Long, @RequestBody order: Order, persistentEntityResourceAssembler: PersistentEntityResourceAssembler): EntityModel<Any> =
         persistentEntityResourceAssembler.toFullResource(customerOrderService.updateOrder(id, order))
 
     @DeleteMapping(value = ["/customerOrders/{id}"])
-    fun deleteOrder(@PathVariable id: Long, persistentEntityResourceAssembler: PersistentEntityResourceAssembler): EntityModel<Any> =
-        persistentEntityResourceAssembler.toFullResource(customerOrderService.deleteOrder(id))
+    fun deleteOrder(@PathVariable id: Long) {
+        customerOrderService.deleteOrder(id)
+    }
+
 }

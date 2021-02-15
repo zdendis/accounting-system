@@ -122,4 +122,16 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>kafka</id>
+            <properties>
+                <spring.profile.activated>kafka</spring.profile.activated>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
 </project>

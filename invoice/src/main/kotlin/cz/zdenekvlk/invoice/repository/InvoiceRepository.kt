@@ -3,7 +3,9 @@ package cz.zdenekvlk.invoice.repository
 import cz.zdenekvlk.invoice.model.Invoice
 import org.springframework.data.repository.PagingAndSortingRepository
 import org.springframework.data.rest.core.annotation.RestResource
+import org.springframework.stereotype.Repository
 
+@Repository
 interface InvoiceRepository : PagingAndSortingRepository<Invoice, Long> {
     @RestResource(exported = false)
     override fun <S : Invoice?> save(invoice: S): S

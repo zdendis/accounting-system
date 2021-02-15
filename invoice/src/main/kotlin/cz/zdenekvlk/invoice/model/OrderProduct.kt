@@ -29,8 +29,8 @@ data class OrderProduct(
 @Embeddable
 data class OrderProductId(
     @Column(name = "order_id")
-    val orderId: Long,
+    val orderId: Long? = null,
 
     @Column(name = "product_id")
-    val productId: Long
+    val productId: Long? = null
 ): Serializable

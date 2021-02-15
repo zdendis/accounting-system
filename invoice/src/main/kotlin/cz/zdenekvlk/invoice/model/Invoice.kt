@@ -9,8 +9,9 @@ import javax.persistence.*
 @Entity
 data class Invoice(
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    val id: Long = -1,
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoice_generator")
+    @SequenceGenerator(name = "invoice_generator", sequenceName = "invoice_sequence", allocationSize = 1)
+    val id: Long? = null,
 
     @GeneratorType(type = InvoiceNumberGenerator::class)
     val invoiceNumber: Long = 0,

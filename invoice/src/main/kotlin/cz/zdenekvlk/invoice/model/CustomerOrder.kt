@@ -5,20 +5,16 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer
-import org.hibernate.annotations.Cache
-import org.hibernate.annotations.CacheConcurrencyStrategy
 import org.hibernate.annotations.NaturalId
-import org.hibernate.annotations.NaturalIdCache
 import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-@NaturalIdCache
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 data class CustomerOrder(
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    val id: Long = -1,
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_generator")
+    @SequenceGenerator(name = "order_generator", sequenceName = "order_sequence", allocationSize = 1)
+    val id: Long? = null,
 
     @NaturalId
     val referenceNumber: Long,
