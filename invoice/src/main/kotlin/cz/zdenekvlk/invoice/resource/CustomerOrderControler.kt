@@ -28,6 +28,7 @@ class CustomerOrderControler(
         persistentEntityResourceAssembler.toFullResource(customerOrderService.createOrUpdateOrder(order))
 
     @PutMapping(value = ["/customerOrders/{id}"])
+    @PatchMapping(value = ["/customerOrders/{id}"])
     fun updateOrder(@PathVariable id: Long, @RequestBody order: Order, persistentEntityResourceAssembler: PersistentEntityResourceAssembler): EntityModel<Any> =
         persistentEntityResourceAssembler.toFullResource(customerOrderService.updateOrder(id, order))
 

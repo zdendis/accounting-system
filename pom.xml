@@ -23,5 +23,8 @@
         <kotlin.version>1.4.21</kotlin.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <springdoc.openapi.ui.version>1.5.3</springdoc.openapi.ui.version>
+        <springdoc.openapi.data.rest.version>1.5.3</springdoc.openapi.data.rest.version>
+        <springdoc.openapi.kotlin.version>1.5.3</springdoc.openapi.kotlin.version>
     </properties>
 </project>
