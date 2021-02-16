@@ -9,8 +9,9 @@ These event driven applications are built on: [Spring Boot][boot], [Maven][maven
 
 cd invoice
 
-mvnw clean package
+mvnw clean package -Dmaven.test.skip=true
 
+##### Make sure of port 9098 is not in use
 mvnw spring-boot:run
 
     or
