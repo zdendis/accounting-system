@@ -2,7 +2,7 @@
 
 ## Pre-requisites
 
-These event driven applications are built on: [Spring Boot][boot], [Maven][maven], and [Java 11][java].
+These event driven applications are built on: Spring Boot[2.4.2], Maven[3.6.3], and Java[11].
 
 
 ### Run App
