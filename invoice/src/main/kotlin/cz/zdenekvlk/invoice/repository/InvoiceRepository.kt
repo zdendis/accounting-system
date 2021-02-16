@@ -7,11 +7,11 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface InvoiceRepository : PagingAndSortingRepository<Invoice, Long> {
-    @RestResource(exported = false)
-    override fun <S : Invoice?> save(invoice: S): S
-
-    @RestResource(exported = false)
-    override fun <S : Invoice?> saveAll(invoices: MutableIterable<S>): MutableIterable<S>
+//    @RestResource(exported = false)
+//    override fun <S : Invoice?> save(invoice: S): S
+//
+//    @RestResource(exported = false)
+//    override fun <S : Invoice?> saveAll(invoices: MutableIterable<S>): MutableIterable<S>
 
     @RestResource(exported = false)
     override fun deleteById(id: Long)
