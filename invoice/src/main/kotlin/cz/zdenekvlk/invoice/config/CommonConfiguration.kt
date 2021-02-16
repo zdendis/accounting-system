@@ -12,7 +12,7 @@ class CommonConfiguration {
     @Throws(SQLException::class)
     fun inMemoryH2DatabaseaServer(): Server {
         return Server.createTcpServer(
-            "-tcp", "-tcpAllowOthers", "-tcpPort", "9098"
+            "-tcp", "-tcpAllowOthers", "-tcpPort", "9098", "-baseDir", "~/h2db"
         )
     }
 }
